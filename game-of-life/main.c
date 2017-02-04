@@ -21,29 +21,12 @@ World world;
 World next_world; // Used as a buffer for the synchronous update
 
 int main() {
-  world[4][1] = true;
-  world[3][1] = true;
-  world[2][1] = true;
+//  world[4][1] = true;
+//  world[3][1] = true;
+//  world[2][1] = true;
 
-  printf("%d\n", get_world());
-  int n = get_world();
-  set_world(2164736);
-
-
-  printf("%d\n", get_world());
-for (int i = 0; i < 25; i++) {
-    if (n & 1)
-        printf("1");
-    else
-        printf("0");
-
-    n >>= 1;
-}
-printf("\n");
-
-
-//  set_world(1792);
-show_world(world);
+  set_world(33035232);
+  show_world(world);
 
 //  for (int i = 0; i < 10; i++) {
 //    update();
@@ -51,7 +34,23 @@ show_world(world);
 //    printf("%d\n", get_world());
 //  }
 
-  return(0);
+ return(0);
+}
+
+void find_fixed_points() {
+  int n_states = pow(2, (5*5));
+  uint32_t *states = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
+  for (uint32_t i=0; i < n_states; i++) {
+    set_world(i);
+    update();
+    states[i] = get_world();
+    if (i == get_world()) {
+      printf("Fixed point found! : %d\n", get_world());
+      show_world(world);
+    }
+  }
+
+  free(states);
 }
 
 void update() {
