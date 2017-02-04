@@ -1,0 +1,8 @@
+* For Michael to do (in order)
+** Space ivaders
+* Jonathan
+** LED Conwway's game of life
+* Elliot
+** Website
+* Jaime
+** Brainfuck vigenere
