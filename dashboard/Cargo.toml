@@ -1,0 +1,8 @@
+[package]
+name = "ichack-gold-dashboard"
+version = "0.1.0"
+authors = ["Elliot Greenwood"]
+
+[dependencies]
+rocket = "0.1.6"
+rocket_codegen = "0.1.6"

@@ -1,0 +1,26 @@
+
+
+ul.container{
+    margin: 0 auto;
+    text-align: center;
+}
+
+li.stage {
+    width: 64px;
+    height: 64px;
+    border-radius: 64px 64px 64px 64px;
+    -moz-border-radius: 64px 64px 64px 64px;
+    -webkit-border-radius: 64px 64px 64px 64px;
+    border: 0px solid #2e2e2e;
+    background: #efefef;
+    display: inline-block;
+    vertical-align: middle;
+
+    margin: 10px;
+    font-size: 28px;
+    line-height: 64px;
+}
+
+li.stage.done {
+    background: #00ff00;
+}
