@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdint.h>
 
 #define MOD(a,b) (((a) + (b)) % (b))
 
@@ -13,6 +14,8 @@ typedef bool World[world_height][world_width];
 
 void show_world();
 void update();
+uint32_t get_world();
+void set_world(uint32_t val);
 
 World world;
 World next_world; // Used as a buffer for the synchronous update
@@ -21,12 +24,32 @@ int main() {
   world[4][1] = true;
   world[3][1] = true;
   world[2][1] = true;
-  show_world(world);
 
-  for (int i = 0; i < 10; i++) {
-    update();
-    show_world(world);
-  }
+  printf("%d\n", get_world());
+  int n = get_world();
+  set_world(2164736);
+
+
+  printf("%d\n", get_world());
+for (int i = 0; i < 25; i++) {
+    if (n & 1)
+        printf("1");
+    else
+        printf("0");
+
+    n >>= 1;
+}
+printf("\n");
+
+
+//  set_world(1792);
+show_world(world);
+
+//  for (int i = 0; i < 10; i++) {
+//    update();
+//    show_world(world);
+//    printf("%d\n", get_world());
+//  }
 
   return(0);
 }
@@ -54,15 +77,36 @@ void update() {
       } else {
         next_world[i][j] = (nbs == 3);
       }
-//      printf("%d", nbs);
-//      if (j == world_width - 1) {
-//        printf("\n");
-//      }
     }
   }
 
   // Update the world synchronously
   memcpy(world, next_world, sizeof(World));
+}
+
+// An integer bit representation of a world (25 bits required)
+uint32_t get_world() {
+  uint32_t val = 0;
+  uint32_t offset;
+  for (int i=0; i < world_height; i++) {
+    for (int j=0; j < world_width; j++) {
+       offset = (world_height * i) + j;
+       val |= world[i][j] << offset;
+    }
+  }
+  return val;
+}
+
+// Set the global world from its bit represenation
+void set_world(uint32_t val) {
+  uint32_t offset;
+  for (int i=0; i < world_height; i++) {
+    for (int j=0; j < world_width; j++) {
+       offset = (world_height * i) + j;
+       world[i][j] = (val & (1 << offset)) != 0;
+    }
+  }
+
 }
 
 void show_world() {
