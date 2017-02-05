@@ -1,5 +1,6 @@
 import React from 'react';
 import Stage from './Stage.jsx';
+import Tech from './Tech.jsx';
 import ActionCable from 'actioncable';
 
 export default class Board extends React.Component {
@@ -7,6 +8,7 @@ export default class Board extends React.Component {
     constructor(props) {
         super(props);
         this.stages = [];
+        this.current = 0;
     }
 
     componentWillMount() {
@@ -34,16 +36,19 @@ export default class Board extends React.Component {
 
     done(id) {
         this.stages[id] = <Stage key={id} id={id} done={true}/>;
+        this.current = id+1;
         this.forceUpdate();
     }
 
     render() {
         var stages = this.stages;
         return (
-            <ul className="container">
-                {stages}
-            </ul>
+            <div>
+                <ul className="container">
+                    {stages}
+                </ul>
+                <Tech idx={this.current}/>
+            </div>
         );
     }
 }
-

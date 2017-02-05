@@ -1,4 +1,15 @@
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+}
 
+h1 {
+  margin : 40px auto;
+  text-align: center;
+  font-size: 56px;
+  line-height: 64px;
+  color: #F2992C;
+}
 
 ul.container{
     margin: 0 auto;
@@ -22,5 +33,22 @@ li.stage {
 }
 
 li.stage.done {
-    background: #00ff00;
+    background: #85BB43;
+}
+
+.tech-area {
+    margin: 40px auto;
+    width: 640px;
+}
+
+h2 {
+    padding: 20px;
+}
+
+.tech-area ul {
+    list-style: circle;
+}
+
+.tech-area ul li {
+    padding: 10px;
 }

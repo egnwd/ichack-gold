@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Monzo Transaction",
+    "tech": [
+      "Monzo Api",
+      "Go Webserver"
+    ]
+  },
+  {
+    "name": "Play Music",
+    "tech": [
+      "Librespot",
+      "spotconnect"
+    ]
+  },
+  {
+    "name": "Conway's Game of Life",
+    "tech": [
+      "Bit Micro",
+      "C/C++"
+    ]
+  },
+  {
+    "name": "Tweet",
+    "tech": [
+      "Twitter API",
+      "Bash"
+    ]
+  },
+  {
+    "name": "Begging for Likes",
+    "tech": [
+      "HTML scraping",
+      "more bash..."
+    ]
+  },
+  {
+    "name": "Breakout",
+    "tech": [
+      "OpenAI Gym",
+      "Python"
+    ]
+  },
+  {
+    "name": "Polaroid",
+    "tech": [
+      "Applescript",
+      "Electronic Mail"
+    ]
+  },
+  {
+    "name": "Processing",
+    "tech": [
+      "Netcat",
+      "p5.js"
+    ]
+  },
+  {
+    "name": "Distributed Network",
+    "tech": [
+      "Erlang",
+      "TCP Socket"
+    ]
+  },
+  {
+    "name": "Vigénere Cypher",
+    "tech": [
+      "node.js",
+      "Brainfuck"
+    ]
+  },
+  {
+    "name": "Dashboard",
+    "tech": [
+      "Rust",
+      "React"
+    ]
+  }
+]

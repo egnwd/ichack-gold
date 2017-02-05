@@ -8,10 +8,8 @@ var stages = Array.apply(null, {length: N}).map(Number.call, Number);
 
 class App extends React.Component {
     render() {
-        var board = <Board stages={stages}/>;
-        console.log(board);
-        return board;
-  }
+        return <Board stages={stages}/>;
+    }
 }
 
 render(<App/>, document.getElementById('app'));
