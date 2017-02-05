@@ -3,7 +3,7 @@
 
 .SUFFIXES: .erl .beam
 
-MODULES  = system node
+MODULES  = system node node2
 
 # BUILD =======================================================
 

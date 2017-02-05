@@ -4,10 +4,10 @@
 
 start() ->
 	receive
-		{next, TIDS, T} -> next(TIDS, T)
+		{next, TIDS, T, SystemTID} -> next(TIDS, T, SystemTID)
 	end.
 
-next([TID|TIDS], T) ->
+next([TID|TIDS], T, SystemTID) ->
 	% T = 100,
 	T2 = 0,
 	if
@@ -67,7 +67,8 @@ next([TID|TIDS], T) ->
 	timer:sleep(T2),
 	%timer:sleep(100),
 	NextT = round(T * 0.8),
-	TID ! {next, TIDS, NextT};
-next([], _) ->
+	TID ! {next, TIDS, NextT, SystemTID};
+next([], _, SystemTID) ->
+	SystemTID ! {continue},
 	io:format('DONE').
 
