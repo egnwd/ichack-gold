@@ -44,7 +44,7 @@
                 </div>
                 <div id="input-box">
                     <label>Waiting for input</label>
-                    <input type="text" id="input" maxlength="1"/>
+                    <input type="text" id="input" maxlength="6"/>
                 </div>
             </div>
             <div id="preview"></div>
@@ -53,7 +53,7 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $.ajax({
-                    url : "input.bf",
+                    url : "input3.bf",
                     dataType: "text",
                     success : function (data) {
                         $("#source").html(data);

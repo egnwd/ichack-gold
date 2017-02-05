@@ -20,7 +20,7 @@ var Interpreter = function (source, tape, pointer,
 
   //for ! operator
   var inputBuffer = new function() {
-    this.buffer = "";
+    this.buffer = "OWJGWM";
     this.initialized = false;
     this.hasInput = function () {
       if (this.initialized == false) {
@@ -127,6 +127,7 @@ var Interpreter = function (source, tape, pointer,
             cell.set("value",0);
           }
         } else {
+          console.log('awaiting...');
           awaitInput(cell);
         }
         break;

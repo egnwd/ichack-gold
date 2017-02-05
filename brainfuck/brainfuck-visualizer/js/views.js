@@ -103,7 +103,7 @@ var InterpreterView = Backbone.View.extend({
         this.preview.empty();
         this.output.empty();
         this.output.removeClass("error");
-        this.input.val("");
+        this.input.val("OWJGWM");
         this.interpreter = new Interpreter(
             this.editor.val(),
             this.tape,
@@ -131,9 +131,10 @@ var InterpreterView = Backbone.View.extend({
         this.inputTarget = cell;
     },
     receiveInput: function () {
+        console.log('receiveInput')
         this.inputTarget.put(this.input.val());
         this.input.parent().hide();
-        this.input.val("");
+        // this.input.val("");
         this.loop();
     },
     removeCaret: function () {
