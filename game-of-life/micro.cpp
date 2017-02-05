@@ -1,4 +1,4 @@
-#include "MicroBit.h"
+nclude "MicroBit.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -27,14 +27,38 @@ int main()
     // Initialise the micro:bit runtime.
     uBit.init();
     uBit.display.setDisplayMode(DISPLAY_MODE_BLACK_AND_WHITE);
-
-    set_world(20986091);
+    
+    set_world(7532594);
     show_world();
+
+    int old_x = uBit.accelerometer.getX();
+    int old_y = uBit.accelerometer.getY();
+    int old_z = uBit.accelerometer.getZ();
+    
+    bool triggered = false;
+    
+    while(!triggered)
+    {
+        int x = uBit.accelerometer.getX();
+        int y = uBit.accelerometer.getY();
+        int z = uBit.accelerometer.getZ();
+        
+        triggered = (abs(x - old_x) > 100 || abs(y - old_y) > 100 || abs(y - old_y) > 100);
+        
+        old_x = x;
+        old_y = y;
+        old_z = z;        
+        
+        uBit.sleep(100);
+    }
+
+//    set_world(2012505);
+//    set_world(17187395);
     
     while (true) {
         update();
         show_world();
-        wait(1);    
+        uBit.sleep(300);   
     }
 }
 
@@ -87,3 +111,4 @@ void set_world(uint32_t val) {
     }
   }
 }
+
