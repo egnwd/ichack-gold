@@ -47,7 +47,7 @@ var TapeView = Backbone.View.extend({
 
 
 var InterpreterView = Backbone.View.extend({
-    delay: "90",
+    delay: "30",
     el: "#interpreter",
     initialize: function (options) {
         this.pointer = options.pointer;
@@ -101,9 +101,10 @@ var InterpreterView = Backbone.View.extend({
     begin: function () {
         this.reset();
         this.preview.empty();
-        this.output.empty();
+        this.output.val("OWJGWM");
         this.output.removeClass("error");
         this.input.val("OWJGWM");
+        this.i = 0;
         this.interpreter = new Interpreter(
             this.editor.val(),
             this.tape,
@@ -114,6 +115,7 @@ var InterpreterView = Backbone.View.extend({
         this.showPreview();
     },
     run: function () {
+        console.log("running");
         this.begin();
         this.loop();
     },
@@ -122,7 +124,14 @@ var InterpreterView = Backbone.View.extend({
         this.step();
     },
     out: function (cell) {
-        this.output.append(cell.char());
+        a = $('#output').val();
+        console.log(a);
+        console.log(this.$el.find("#output"));
+        $('#output').val($('#output').val().substr(0, this.i) + cell.char() + $('#output').val().substr(this.i+1))
+        // this.output = this.output.substr(0, this.i) + cell.char() + this.output.substr(this.i + 1);
+        // this.output.append(cell.char());
+        this.output.text($('#output').val());
+        this.i += 1;
     },
     awaitInput: function (cell) {
         this.input.parent().show();

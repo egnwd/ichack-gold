@@ -23,7 +23,7 @@
             <div class="pointer"><em></em></div>
         </section>
         <section class="editor">
-            <div class="actions">
+            <div class="actions" style="display:none;">
                 <a class="button" href="#" id="run">Run</a>
                 <a class="button" href="#" id="first-step">Step</a>
                 <a class="button hidden" href="#" id="stop">Stop</a>
@@ -32,15 +32,17 @@
                 <a class="button hidden" href="#" id="continue">Continue</a>
                 <div id="delay-box">
                     <label for="delay">Delay</label>
-                    <input id="delay" value="100" type="range" step="30" min="30" max="300"/>
+                    <input id="delay" value="30" type="range" step="30" min="30" max="300"/>
                 </div>
                 <div id="optimize-box">
                     <label for="optimize">Optimize?</label>
-                    <input id="optimize" type="checkbox"/>
+                    <input id="optimize" type="checkbox" checked="checked
+                    "/>
                 </div>
                 <div id="exclaim-box">
                     <label for="exclaim">!</label>
-                    <input id="exclaim" type="checkbox"/>
+                    <input id="exclaim" type="checkbox" checked="checked
+                    "/>
                 </div>
                 <div id="input-box">
                     <label>Waiting for input</label>
@@ -62,74 +64,28 @@
             });
         </script>
         <h3>Output</h3>
-        <pre id="output"></pre>
+        <pre id="output">OWJGWM</pre>
         </section>
     </div>
-
-    <section id="info">
-        <h3>Quick Reference</h3>
-
-        <table>
-            <tbody>
-            <tr>
-                <td style="text-align:center"><code>&gt;</code></td>
-                <td>increment the data pointer (to point to the next cell to the right).</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>&lt;</code></td>
-                <td>decrement the data pointer (to point to the next cell to the left).</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>+</code></td>
-                <td>increment (increase by one) the byte at the data pointer.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>-</code></td>
-                <td>decrement (decrease by one) the byte at the data pointer.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>.</code></td>
-                <td>output the byte at the data pointer.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>,</code></td>
-                <td>accept one byte of input, storing its value in the byte at the data pointer.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>[</code></td>
-                <td>if the byte at the data pointer is zero, then instead of moving the <a href="/wiki/Program_Counter" title="Program Counter" class="mw-redirect">instruction pointer</a> forward to the next command, <a href="/wiki/Branch_(computer_science)" title="Branch (computer science)">jump</a> it <i>forward</i> to the command after the <i>matching</i> <code>]</code> command.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>]</code></td>
-                <td>if the byte at the data pointer is nonzero, then instead of moving the instruction pointer forward to the next command, jump it <i>back</i> to the command after the <i>matching</i> <code>[</code> command.</td>
-            </tr>
-            <tr>
-                <td style="text-align:center"><code>!</code></td>
-		<td>if the exclaim box is checked, allows the interpreter to use all characters to the right of the <code>!</code> as program input.</td>
-            </tr>
-            </tbody></table>
-
-        <p><a href="http://en.wikipedia.org/wiki/Brainfuck">http://en.wikipedia.org/wiki/Brainfuck</a></p>
-
-
-    </section>
 
     <script type="text/javascript">
         $(function () {
             var cells = _(27).times($.noop);
             var tape = new Tape(cells);
             var pointer = new Pointer();
-            new InterpreterView({
+            var iView = new InterpreterView({
                 editor: $("#source"),
                 tape: tape,
                 pointer: pointer
-            }).render();
+            });
+            iView.render();
+        });
+
+        setTimeout(function(){ $("#run").click() }, 1500);
+
+        $(document).ready(function(){
+            $("#run").click();
         });
     </script>
-
-    <a href="https://github.com/fatiherikli/brainfuck-visualizer/">
-        <img style="position: absolute; top: 0; right: 0; border: 0;"
-             src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"
-             alt="Fork me on GitHub"></a>
 </body>
 </html>
