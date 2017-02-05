@@ -16,6 +16,7 @@ void show_world();
 void update();
 uint32_t get_world();
 void set_world(uint32_t val);
+uint32_t find_root(uint32_t state);
 
 World world;
 World next_world; // Used as a buffer for the synchronous update
@@ -25,16 +26,83 @@ int main() {
 //  world[3][1] = true;
 //  world[2][1] = true;
 
-  set_world(33035232);
-  show_world(world);
+//  set_world(33035232);
+//  show_world(world);
 
 //  for (int i = 0; i < 10; i++) {
 //    update();
 //    show_world(world);
 //    printf("%d\n", get_world());
 //  }
-
+//  printf("%d\n", find_root(11043370));
+ printf("%d\n", find_root(11043370));
  return(0);
+}
+
+/*
+uint32_t find_root(uint32_t state) {
+  int n_states = pow(2, (5*5));
+  uint32_t *states = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
+  for (uint32_t i=0; i < n_states; i++) {
+    set_world(i);
+    update();
+    states[i] = get_world();
+  }
+
+  uint32_t *inverse = (uint32_t*) calloc(1, sizeof(uint32_t)*n_states);
+  
+  for (uint32_t i=0; i < n_states; i++) {
+    inverse[states[i]] = i;
+  }
+
+  int root = state;
+  int length = 0;
+  while (inverse[root] != 0) {
+    root = inverse[root];
+    length++;
+  }
+
+  free(states);
+  free(inverse);
+  printf("Found root with length %d\n", length);
+  return root;
+}
+*/
+
+uint32_t find_root(uint32_t leaf) {
+  int n_states = pow(2, (5*5));
+  uint32_t *states = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
+  uint32_t *trail = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
+  for (uint32_t i=0; i < n_states; i++) {
+    set_world(i);
+    update();
+    states[i] = get_world();
+  }
+
+  int current = 0;
+  int end = 1;
+  trail[0] = leaf;
+
+  printf("Calculated table\n");
+
+  while (current != end) {
+    for (uint32_t i=0; i < n_states; i++) {
+      if (states[i] == trail[current]) {
+        trail[end] = i;
+        end++;
+      }
+    }
+    current++;
+    printf("Current: %d\nEnd: %d\n\n", current, end);
+    if (current % 4096 == 0) {
+      printf("VALUE: %d\n", trail[end-1]);
+    }
+  }
+  
+  uint32_t root = trail[end-1];
+  free(states);
+  free(trail);
+  return root;
 }
 
 void find_fixed_points() {
