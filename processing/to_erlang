@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eux
+
+nc -l 0.0.0.0 1234 && open index.html && curl -d "id=9&letter=M&idx=5" http://localhost:3000/done
+
+sleep 8 && curl -d "id=7" http://localhost:3000/done
+
+sleep 8 && echo "hello" | nc 129.31.186.106 1234
