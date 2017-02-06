@@ -1,4 +1,4 @@
-nclude "MicroBit.h"
+#include "MicroBit.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -27,7 +27,8 @@ int main()
     // Initialise the micro:bit runtime.
     uBit.init();
     uBit.display.setDisplayMode(DISPLAY_MODE_BLACK_AND_WHITE);
-    
+   
+    // The state that will eventually reach 'O' 
     set_world(7532594);
     show_world();
 
@@ -52,9 +53,6 @@ int main()
         uBit.sleep(100);
     }
 
-//    set_world(2012505);
-//    set_world(17187395);
-    
     while (true) {
         update();
         show_world();

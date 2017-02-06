@@ -22,54 +22,26 @@ World world;
 World next_world; // Used as a buffer for the synchronous update
 
 int main() {
-//  world[4][1] = true;
-//  world[3][1] = true;
-//  world[2][1] = true;
 
-//  set_world(33035232);
-//  show_world(world);
+  // Find the root for the 'O' state
+  // printf("%d\n", find_root(11043370));
 
-//  for (int i = 0; i < 10; i++) {
-//    update();
-//    show_world(world);
-//    printf("%d\n", get_world());
-//  }
-//  printf("%d\n", find_root(11043370));
- printf("%d\n", find_root(11043370));
- return(0);
-}
+  set_world(7532594);
+  show_world(world);
 
-/*
-uint32_t find_root(uint32_t state) {
-  int n_states = pow(2, (5*5));
-  uint32_t *states = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
-  for (uint32_t i=0; i < n_states; i++) {
-    set_world(i);
+  for (int i = 0; i < 28; i++) {
     update();
-    states[i] = get_world();
+    show_world(world);
+    printf("%d\n", get_world());
   }
 
-  uint32_t *inverse = (uint32_t*) calloc(1, sizeof(uint32_t)*n_states);
-  
-  for (uint32_t i=0; i < n_states; i++) {
-    inverse[states[i]] = i;
-  }
-
-  int root = state;
-  int length = 0;
-  while (inverse[root] != 0) {
-    root = inverse[root];
-    length++;
-  }
-
-  free(states);
-  free(inverse);
-  printf("Found root with length %d\n", length);
-  return root;
+  return(0);
 }
-*/
 
 uint32_t find_root(uint32_t leaf) {
+  
+  if (leaf == 0) { return 0; }
+
   int n_states = pow(2, (5*5));
   uint32_t *states = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
   uint32_t *trail = (uint32_t*) malloc(sizeof(uint32_t)*n_states);
@@ -82,6 +54,7 @@ uint32_t find_root(uint32_t leaf) {
   int current = 0;
   int end = 1;
   trail[0] = leaf;
+  states[leaf] = 0; // Remove the fixed point (bit hacky)
 
   printf("Calculated table\n");
 
