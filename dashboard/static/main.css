@@ -32,8 +32,32 @@ li.stage {
     line-height: 64px;
 }
 
+ul.letters {
+    text-align: center;
+    margin 20px auto;
+}
+
+li.letter {
+    font-size:24px;
+    line-height: 30px;
+    vertical-align: middle;
+    font-weight: bold;
+    width: 30px;
+    height: 30px;
+    display:inline-block;
+    border: 2px solid #2e2e2e;
+    padding: 10px;
+    margin: 5px;
+}
+
+li.stage.curr {
+    background: #043D85;
+    color: #FFFFFF;
+}
+
 li.stage.done {
     background: #85BB43;
+    color: #2e2e2e;
 }
 
 .tech-area {

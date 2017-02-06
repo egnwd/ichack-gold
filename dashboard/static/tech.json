@@ -14,10 +14,9 @@
     ]
   },
   {
-    "name": "Conway's Game of Life",
+    "name": "Microphone",
     "tech": [
-      "Bit Micro",
-      "C/C++"
+      "Arduino UNO"
     ]
   },
   {
@@ -39,6 +38,21 @@
     "tech": [
       "OpenAI Gym",
       "Python"
+    ]
+  },
+  {
+    "name": "Robot Wars",
+    "tech": [
+      "BrickPi & Raspberry pi",
+      "python",
+      "Lego Mindstorms"
+    ]
+  },
+  {
+    "name": "Conway's Game of Life",
+    "tech": [
+      "Bit Micro",
+      "C/C++"
     ]
   },
   {

@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 
 import Board from './Board.jsx';
 
-var N = 10;
+var N = 12;
 var stages = Array.apply(null, {length: N}).map(Number.call, Number);
 
 class App extends React.Component {
