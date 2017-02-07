@@ -4,16 +4,16 @@
 
 start() ->
 	receive
-		{next, TIDS, Count} -> next(TIDS, Count)
+		{next, TIDS, Count, Secret} -> next(TIDS, Count, Secret)
 	end.
 
-next([TID|TIDS], Count) ->
+next([TID|TIDS], Count, Secret) ->
 	if
-		Count rem 10000 == 0->
+		Count rem 10000 == 0 ->
 			io:format('~p~n', [Count]);
 		true -> ok
 	end,
 	TID ! {next, TIDS, Count + 1};
-next([], _) ->
-	io:format('DONE~n').
+next([], _, Secret) ->
+	io:format('Received Secret: ~p~n', [Secret]).
 

@@ -34,7 +34,7 @@ L_ERL     = erl -noshell -pa ebin -setcookie pass
 L_ERLNODE = node
 
 run:	all
-	$(L_ERL) -s $(SYSTEM) start
+	$(L_ERL) -s $(SYSTEM) start OWJGWM
 
 
 

@@ -36,7 +36,7 @@ next([TID|TIDS], T, SystemTID) ->
 			timer:sleep(T),
 			io:format('            v~n'),
 			timer:sleep(T),
-			io:format('             ~p ~n', [self()]);
+			io:format('           Node ~p ~n', [self()]);
 		true ->
 			io:format('             /~n'),
 			timer:sleep(T),
@@ -62,13 +62,12 @@ next([TID|TIDS], T, SystemTID) ->
 			timer:sleep(T),
 			io:format('  v~n'),
 			timer:sleep(T),
-			io:format('~p~n', [self()])
+			io:format('Node ~p~n', [self()])
 	end,
 	timer:sleep(T2),
 	%timer:sleep(100),
 	NextT = round(T * 0.8),
 	TID ! {next, TIDS, NextT, SystemTID};
 next([], _, SystemTID) ->
-	SystemTID ! {continue},
-	io:format('DONE').
+	SystemTID ! {continue}.
 

@@ -1,4 +1,4 @@
-Vigenere encryption in Brainfuck
+Vigenere decryption in Brainfuck
 
 ++[                             % Initialize key
 >++++++++++ ++++++++++          % cell 1 = 20
