@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Brainfuck Visualizer</title>
+    <link rel="stylesheet" href="css/screen.css" />
+    <script type="text/javascript" src="js/lib/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="js/lib/backbone-min.js"></script>
+    <script type="text/javascript" src="js/interpreter.js"></script>
+    <script type="text/javascript" src="js/views.js"></script>
+    <script type="text/javascript" src="js/models.js"></script>
+</head>
+<body>
+
+    <header>
+
+    </header>
+
+    <div id="interpreter">
+        <section class="machine">
+            <ul class="tape">
+            </ul>
+            <div class="pointer"><em></em></div>
+        </section>
+        <section class="editor">
+            <div class="actions" style="display:none;">
+                <a class="button" href="#" id="run">Run</a>
+                <a class="button" href="#" id="first-step">Step</a>
+                <a class="button hidden" href="#" id="stop">Stop</a>
+                <a class="button hidden" href="#" id="step">Step</a>
+                <a class="button hidden" href="#" id="pause">Pause</a>
+                <a class="button hidden" href="#" id="continue">Continue</a>
+                <div id="delay-box">
+                    <label for="delay">Delay</label>
+                    <input id="delay" value="30" type="range" step="30" min="30" max="300"/>
+                </div>
+                <div id="optimize-box">
+                    <label for="optimize">Optimize?</label>
+                    <input id="optimize" type="checkbox" checked="checked
+                    "/>
+                </div>
+                <div id="exclaim-box">
+                    <label for="exclaim">!</label>
+                    <input id="exclaim" type="checkbox" checked="checked
+                    "/>
+                </div>
+                <div id="input-box">
+                    <label>Waiting for input</label>
+                    <input type="text" id="input" maxlength="6"/>
+                </div>
+            </div>
+            <div id="preview"></div>
+			<textarea id="source"></textarea>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.ajax({
+                    url : "input3.bf",
+                    dataType: "text",
+                    success : function (data) {
+                        $("#source").html(data);
+                    }
+                });
+            });
+        </script>
+        <h3>Output</h3>
+        <pre id="output">OWJGWM</pre>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            var cells = _(27).times($.noop);
+            var tape = new Tape(cells);
+            var pointer = new Pointer();
+            var iView = new InterpreterView({
+                editor: $("#source"),
+                tape: tape,
+                pointer: pointer
+            });
+            iView.render();
+        });
+
+        setTimeout(function(){ $("#run").click() }, 1500);
+
+        $(document).ready(function(){
+            $("#run").click();
+        });
+    </script>
+</body>
+</html>

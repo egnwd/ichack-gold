@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+
+set -eux
+echo "TO michael"
+echo "lol bant" | nc 129.31.209.190 1234
